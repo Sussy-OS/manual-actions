@@ -31,4 +31,4 @@ jobs:
             apt-get update
             apt-get install tmate -y
             tmate
-            bash loop.sh
+            tmate show-messages
