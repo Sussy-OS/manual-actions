@@ -14,7 +14,7 @@ jobs:
     - uses: uraimo/run-on-arch-action@v2
       with:
         arch: arm64
-        distro: ubuntu22.04
+        distro: ubuntu_latest
     - uses: fastai/workflows/ssh@master
       with:
         ssh_key: ${{ secrets.SSH_KEY }}
