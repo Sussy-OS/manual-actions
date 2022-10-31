@@ -8,18 +8,26 @@ on:
 
 
 jobs:
-  build:
+  armv7_job:
+    # The host should always be Linux
     runs-on: ubuntu-latest
+    name: Build on ubuntu-22.04 aarch64
     steps:
-    - uses: uraimo/run-on-arch-action@v2
-      with:
-        arch: aarch64
-        distro: ubuntu_latest
-    - uses: fastai/workflows/ssh@master
-      with:
-        ssh_key: ${{ secrets.SSH_KEY }}
-        key_file: id_ecdsa
-    - uses: actions/checkout@v2
-    - run: source script-linux.sh
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@master
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        id: runcmd
+        with:
+          arch: aarch64
+          distro: ubuntu_latest
+
+          # Not required, but speeds up builds by storing container images in
+          # a GitHub package registry.
+          githubToken: ${{ github.token }}
+
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            apt-get install tmate -y
+            tmate
+            bash loop.sh
