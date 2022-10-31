@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: uraimo/run-on-arch-action@v2
       with:
-        arch: arm64
+        arch: aarch64
         distro: ubuntu_latest
     - uses: fastai/workflows/ssh@master
       with:
