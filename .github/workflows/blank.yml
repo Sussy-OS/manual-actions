@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Build on ubuntu-22.04 aarch64
     steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: uraimo/run-on-arch-action@v2
+      - uses: actions/checkout@v4.1.1
+      - uses: uraimo/run-on-arch-action@v2.5.1
         name: Run commands
         id: runcmd
         with:
-          arch: aarch32
+          arch: armv7
           distro: ubuntu_latest
 
           # Set an output parameter `uname` for use in subsequent steps
